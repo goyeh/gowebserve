@@ -16,7 +16,7 @@ func checkErr(err error) (isErr bool){
 	isErr = false
 	if err != nil {
 		isErr = true
-		log.Print(runtime.Caller(1))
+		myLog(runtime.Caller(1))
 		log.Panic(err)
 	}
 	return
@@ -33,7 +33,7 @@ func checkDbErr(err error,db *sql.DB) (isErr bool){
 	isErr = false
 	if err != nil {
 		isErr = true
-		log.Print(runtime.Caller(1))
+		myLog(runtime.Caller(1))
 		db.Ping()  //Return the Database Error object
 		log.Panic(err)
 	}

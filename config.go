@@ -16,6 +16,7 @@ type Config struct {
 	APPNAME                       string
 	LOGDIR                        string
 	PORT                          string
+	COMPRESS                      bool
 }
 
 var conf Config
@@ -33,10 +34,12 @@ func init(){
 				getEnv("APPNAME","AENConnect-API"),
 				getEnv("LOGDIR","/var/log/connect-api"),
 				getEnv("PORT","8000"),
+				getEnvAsBool("COMPRESS",false),
 		}
 }
 
 // Simple helper function to read an environment or return a default value
+// You may over ride these values based on parameter driven application if you like.
 func getEnv(key string, defaultVal string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		return value

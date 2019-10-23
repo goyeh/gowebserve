@@ -10,5 +10,9 @@ func init(){
 
 func main()  {
 	handler := requestHandler
-	checkErr(fasthttp.ListenAndServe(":"+conf.PORT, handler))
+	if conf.COMPRESS {
+		fasthttp.CompressHandler(handler)
+	} else {
+		checkErr(fasthttp.ListenAndServe(":"+conf.PORT, handler))
+	}
 }
